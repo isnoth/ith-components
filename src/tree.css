@@ -1,0 +1,26 @@
+.active-node {
+    background-color: #bae7ff;
+}
+
+.disabled-node {
+    color: #ccc;
+    /* pointer-events: none; */
+}
+
+.node-wrapper {
+    font-size: 1rem;
+}
+
+.node-content__icon > span > svg {
+    transition: all 0.2s;
+}
+
+.node-content__icon--expanded >span> svg {
+    transform: rotate(90deg);
+}
+
+.node-content {
+    display: flex;
+    margin-bottom: .8em;
+}
+
