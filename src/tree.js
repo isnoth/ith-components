@@ -88,30 +88,31 @@ export class TreeNode extends Component {
             'node-content': true,
             'active-node': activeLink === title,
             'disabled-node': !enabled
-          })}>
-        {expandable && (
-          <span
+          })}
+        >
+          {expandable && (
+            <span
               className={classNames({
-              'node-content__icon': true,
-              'node-content__icon--expanded': this.state.expand
+                'node-content__icon': true,
+                'node-content__icon--expanded': this.state.expand
               })}
               style={{ cursor: 'pointer' }}
               onClick={this.toggleExpand}
-          >
-            <span>
-              {' '}
-              <ChevronRight size={14} />{' '}
+            >
+              <span>
+                {' '}
+                <ChevronRight size={14} />{' '}
+              </span>
             </span>
-          </span>
-        )}
+          )}
 
-        <span
-          style={{ cursor: 'pointer' }}
-          onClick={this.onClick}
-          className={classNames({ 'node-content__text': true })}
-        >
-          {renderer && renderer(this.props)}
-        </span>
+          <span
+            style={{ cursor: 'pointer' }}
+            onClick={this.onClick}
+            className={classNames({ 'node-content__text': true })}
+          >
+            {renderer && renderer(this.props)}
+          </span>
         </div>
         {this.state.expand && (
           <div style={this.getChildContainerStyle()}>
