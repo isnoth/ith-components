@@ -58,8 +58,8 @@ export class TreeNode extends Component {
   }
 
   getChildContainerStyle = () => {
-    const { level, title } = this.props
-    console.log('getChildContainerStyle:', title, level)
+    const { level } = this.props
+    // console.log('getChildContainerStyle:', title, level)
     return { marginLeft: (level === 1 && '0px') || '1.5em' }
   }
 
@@ -79,7 +79,6 @@ export class TreeNode extends Component {
       renderer
     } = this.props
     const enabled = isNodeEnabled({ title, id, parentEnable, parentId })
-
     // console.log('isNodeEnabled:', enabled, title, id, isNodeEnabled({title, id}), isParentEnabled)
     return (
       <div className='node-wrapper' id={id}>
