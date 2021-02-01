@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import classNames from 'classnames'
+import styled from 'styled-components'
 import { ChevronRight } from 'react-feather'
 import './tree.css'
 
@@ -76,12 +77,13 @@ export class TreeNode extends Component {
       isNodeEnabled = () => true,
       parentEnable,
       parentId,
-      renderer
+      renderer,
+      className
     } = this.props
     const enabled = isNodeEnabled({ title, id, parentEnable, parentId })
     // console.log('isNodeEnabled:', enabled, title, id, isNodeEnabled({title, id}), isParentEnabled)
     return (
-      <div className='node-wrapper' id={id}>
+      <div className={classNames('node-wrapper', className)} id={id}>
         <div
           className={classNames({
             'node-content': true,
@@ -139,3 +141,31 @@ export class TreeNode extends Component {
     )
   }
 }
+
+export const TreeNodeStyled = styled(TreeNode)`
+  .active-node {
+    background-color: #bae7ff;
+  }
+
+  .disabled-node {
+    color: #ccc;
+    /* pointer-events: none; */
+  }
+
+  .node-wrapper {
+    font-size: 1rem;
+  }
+
+  .node-content__icon > span > svg {
+    transition: all 0.2s;
+  }
+
+  .node-content__icon--expanded > span > svg {
+    transform: rotate(90deg);
+  }
+
+  .node-content {
+    display: flex;
+    margin-bottom: 0.8em;
+  }
+`

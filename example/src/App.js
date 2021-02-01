@@ -1,6 +1,6 @@
 import React from 'react'
 import { ExampleComponent } from 'ith-components'
-import { TreeNode } from 'ith-components'
+import { TreeNodeStyled } from 'ith-components'
 import 'ith-components/dist/index.css'
 
 function onLoadData() {
@@ -26,7 +26,7 @@ function click(level, title, id, parentActiveLink, enabled, expanded, toggleExpa
 const App = () => {
     return <>
         <ExampleComponent text="Create React"/>
-        <TreeNode
+        <TreeNodeStyled
             onTreeNodeInit={() => {}}
             title="root"
             expandable={true}
