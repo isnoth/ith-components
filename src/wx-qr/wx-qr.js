@@ -25,7 +25,7 @@ export const WechatQr = ({
   }, [])
 
   useEffect(() => {
-    // @ts-ignore
+    /* eslint-disable-next-line */
     const obj = new WxLogin({
       self_redirect: true,
       id: 'login_container',
