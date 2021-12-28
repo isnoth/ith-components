@@ -6,3 +6,4 @@ export const ExampleComponent = ({ text }) => {
 }
 
 export * from './tree'
+export * from './wx-qr/wx-qr'
