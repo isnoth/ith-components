@@ -46,7 +46,11 @@ export const WechatQr = ({
   }, [])
 
   return (
-    <div id={id} className='tw-text-center' style={{ textAlign: 'center' }}>
+    <div
+      id={id}
+      className='tw-text-center'
+      style={{ textAlign: 'center', display: 'flex', justifyContent: 'center' }}
+    >
       {' '}
       Wechat QR{' '}
     </div>
