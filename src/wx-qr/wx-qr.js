@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './wxLogin'
 
 export const WechatQr = ({
@@ -17,6 +17,8 @@ export const WechatQr = ({
     listener(msg)
   }
 
+  const [id] = useState(Math.random().toString())
+
   useEffect(() => {
     window.addEventListener('message', watcher)
     return () => {
@@ -28,7 +30,7 @@ export const WechatQr = ({
     /* eslint-disable-next-line */
     const obj = new WxLogin({
       self_redirect: true,
-      id: 'login_container',
+      id: id,
       appid: 'wxe5575595fec4072a',
       scope: 'snsapi_login',
       redirect_uri: cb,
@@ -44,7 +46,7 @@ export const WechatQr = ({
   }, [])
 
   return (
-    <div id='login_container' className='tw-text-center'>
+    <div id={id} className='tw-text-center' style={{ textAlign: 'center' }}>
       {' '}
       Wechat QR{' '}
     </div>

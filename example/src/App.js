@@ -41,8 +41,17 @@ const WechatQrDemo = () => {
         <div style={{display:'flex'}}>
             <div>
                 <WechatQr
-                    cb={"http://www.damaishuju.com/wxapi/wxInfo2Cb"}
-                    state={window.btoa(unescape(encodeURIComponent({name:123})))}
+                    cb={"http://www.damaishuju.com/wpi-test/wxInfo2Cb"}
+                    state={window.btoa(unescape(encodeURIComponent(JSON.stringify({site:'ml'}))))}
+                    listener={listener}
+                />
+            </div>
+
+            <div>
+                <h3> needPayType: true</h3>
+                <WechatQr
+                    cb={"http://www.damaishuju.com/wpi-test/wxInfo2Cb"}
+                    state={window.btoa(unescape(encodeURIComponent(JSON.stringify({site:'ml', needPayType: true}))))}
                     listener={listener}
                 />
             </div>
