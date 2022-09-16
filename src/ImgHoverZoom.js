@@ -3,6 +3,7 @@ import React, { useState, useRef } from 'react'
 export const ImgHoverZoom = ({ ratio, src, width, height, debug }) => {
   const [hover, setHover] = useState(false)
   const ref = useRef()
+  const containerRef = useRef()
 
   const getStyle = () => {
     const defaultStyle = {
@@ -23,7 +24,31 @@ export const ImgHoverZoom = ({ ratio, src, width, height, debug }) => {
         transform: `scale(${ratio})`,
         // position: 'absolute',
         // left: ref.current.offsetLeft,
-        top: 0,
+        zIndex: 9999
+        // position: 'fixed',
+        // maxWidth,
+        // height
+      }
+    }
+    return defaultStyle
+  }
+
+  const getContainerStyle = () => {
+    const defaultStyle = {
+      width,
+      height,
+      position: 'fixed',
+      display: 'flex',
+      aliginItems: 'center',
+      justifyContent: 'center'
+    }
+
+    if (hover) {
+      return {
+        ...defaultStyle,
+        position: 'fixed',
+        left: containerRef.current.getBoundingClientRect().x,
+        top: containerRef.current.getBoundingClientRect().y,
         zIndex: 9999
       }
     }
@@ -40,16 +65,7 @@ export const ImgHoverZoom = ({ ratio, src, width, height, debug }) => {
         background: debug ? 'gray' : 'none'
       }}
     >
-      <div
-        style={{
-          width: '100%',
-          height: '100%',
-          position: 'absolute',
-          display: 'flex',
-          aliginItems: 'center',
-          justifyContent: 'center'
-        }}
-      >
+      <div ref={containerRef} style={getContainerStyle()}>
         <img
           ref={ref}
           src={src}
