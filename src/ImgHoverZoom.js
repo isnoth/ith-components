@@ -11,7 +11,7 @@ export const ImgHoverZoom = ({ ratio, src, width, height, debug }) => {
       maxHeight: '100%',
       cursor: 'pointer',
       margin: 'auto',
-      transformOrigin: `left bottom`
+      transformOrigin: `left center`
     }
 
     if (hover) {
@@ -22,8 +22,9 @@ export const ImgHoverZoom = ({ ratio, src, width, height, debug }) => {
         // height: `${ratio * 100}%`,
         transform: `scale(${ratio})`,
         // position: 'absolute',
-        left: ref.current.offsetLeft,
-        top: 0
+        // left: ref.current.offsetLeft,
+        top: 0,
+        zIndex: 9999
       }
     }
     return defaultStyle

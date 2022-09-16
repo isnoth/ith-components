@@ -1,6 +1,6 @@
 {
   "name": "ith-components",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Made with create-react-library",
   "author": "isnoth",
   "license": "MIT",
@@ -53,6 +53,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "react-feather": "^2.0.9",
+    "react-spring": "^9.5.4",
     "styled-components": "^5.2.1"
   }
 }

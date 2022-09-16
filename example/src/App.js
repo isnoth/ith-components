@@ -3,6 +3,7 @@ import { ExampleComponent } from 'ith-components'
 import { TreeNodeStyled } from 'ith-components'
 import { WechatQr } from 'ith-components'
 import { ImgHoverZoom } from 'ith-components'
+import { TestSpring } from 'ith-components'
 import 'ith-components/dist/index.css'
 
 function onLoadData() {
@@ -63,16 +64,44 @@ const WechatQrDemo = () => {
     </div>
 }
 
+const Test = () => {
+    const [toggle, setToggle] = useState(false)
+    return <div>
+        <div style={{display: 'flex'}}>
+            <button onClick={() => setToggle(!toggle)}>Toggle</button>
+            <TestSpring toggle={toggle}
+                height={'60px'} 
+                width={'120px'}
+                debug={true}
+                ratio={1.8} 
+                src={'https://thumbnail10.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/355306515057791-69466558-beb0-45ad-a7a0-fd9db43bdc90.jpg'}
+            />
+            <div style={{'background': '#aacc00', zIndex: '999'}}>
+                after content
+            </div>
+        </div>
+    </div>
+}
+
 const App = () => {
     return <>
+        <Test/>
         <ExampleComponent text="Create React"/>
 
-        <ImgHoverZoom 
-            height={'60px'} 
-            width={'120px'}
-            debug={true}
-            ratio={1.8} 
-            src={'https://thumbnail10.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/355306515057791-69466558-beb0-45ad-a7a0-fd9db43bdc90.jpg'}/>
+        <div style={{display: 'flex'}}>
+            <div>
+                <ImgHoverZoom 
+                    height={'60px'} 
+                    width={'120px'}
+                    debug={true}
+                    ratio={1.8} 
+                    src={'https://thumbnail10.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/355306515057791-69466558-beb0-45ad-a7a0-fd9db43bdc90.jpg'}
+                    />
+                </div>
+            <div style={{'background': '#aacc00', zIndex: '999'}}>
+                after content
+            </div>
+        </div>
         <ImgHoverZoom 
             debug={true}
         height={'120px'} width={'60px'}ratio={1.8} src={'https://thumbnail10.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/355306515057791-69466558-beb0-45ad-a7a0-fd9db43bdc90.jpg'}/>

@@ -8,3 +8,4 @@ export const ExampleComponent = ({ text }) => {
 export * from './tree'
 export * from './wx-qr/wx-qr'
 export * from './ImgHoverZoom'
+export * from './TestSpring'
