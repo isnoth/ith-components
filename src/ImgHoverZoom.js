@@ -37,7 +37,7 @@ export const ImgHoverZoom = ({ ratio, src, width, height, debug }) => {
     const defaultStyle = {
       width,
       height,
-      position: 'fixed',
+      position: 'absolute',
       display: 'flex',
       aliginItems: 'center',
       justifyContent: 'center'
