@@ -2,6 +2,7 @@ import React, { useState} from 'react'
 import { ExampleComponent } from 'ith-components'
 import { TreeNodeStyled } from 'ith-components'
 import { WechatQr } from 'ith-components'
+import { ImgHoverZoom } from 'ith-components'
 import 'ith-components/dist/index.css'
 
 function onLoadData() {
@@ -65,6 +66,10 @@ const WechatQrDemo = () => {
 const App = () => {
     return <>
         <ExampleComponent text="Create React"/>
+
+        <div style={{width: '80px', height: '80px'}}>
+            <ImgHoverZoom ratio={1.8} src={'https://thumbnail10.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/355306515057791-69466558-beb0-45ad-a7a0-fd9db43bdc90.jpg'}/>
+        </div>
         <TreeNodeStyled
             onTreeNodeInit={() => {}}
             title="root"
