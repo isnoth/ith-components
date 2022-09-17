@@ -102,6 +102,20 @@ const App = () => {
                 after content
             </div>
         </div>
+        <div style={{display: 'flex'}}>
+            <div>
+                <ImgHoverZoom 
+                    height={'60px'} 
+                    width={'120px'}
+                    debug={true}
+                    ratio={1.8} 
+                    src={'https://thumbnail10.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/355306515057791-69466558-beb0-45ad-a7a0-fd9db43bdc90.jpg'}
+                    />
+                </div>
+            <div style={{'background': '#aacc00', zIndex: '999'}}>
+                after content
+            </div>
+        </div>
         <ImgHoverZoom 
             debug={true}
         height={'120px'} width={'60px'}ratio={1.8} src={'https://thumbnail10.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/355306515057791-69466558-beb0-45ad-a7a0-fd9db43bdc90.jpg'}/>

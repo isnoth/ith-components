@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-let timer = null
+// let timer = null
 
 export const ImgHoverZoom = ({
   ratio,
@@ -11,6 +11,7 @@ export const ImgHoverZoom = ({
 }) => {
   const [hover, setHover] = useState(false)
   const [animated, setAnimated] = useState(false)
+  const [timer, setTimer] = useState(null)
   const ref = useRef()
   const containerRef = useRef()
 
@@ -21,6 +22,7 @@ export const ImgHoverZoom = ({
     if (timer) {
       console.log('onEnter clearTimeout')
       clearTimeout(timer)
+      setTimer(null)
     }
   }
 
@@ -29,11 +31,13 @@ export const ImgHoverZoom = ({
     setHover(false)
     if (timer) {
       clearTimeout(timer)
+      setTimer(null)
     }
 
-    timer = setTimeout(() => {
+    const t = setTimeout(() => {
       setAnimated(false)
     }, delay)
+    setTimer(t)
   }
 
   const getStyle = () => {
