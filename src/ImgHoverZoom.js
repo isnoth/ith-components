@@ -1,13 +1,44 @@
 import React, { useState, useRef } from 'react'
+let timer = null
 
-export const ImgHoverZoom = ({ ratio, src, width, height, debug }) => {
+export const ImgHoverZoom = ({
+  ratio,
+  src,
+  width,
+  height,
+  debug,
+  delay = 500
+}) => {
   const [hover, setHover] = useState(false)
+  const [animated, setAnimated] = useState(false)
   const ref = useRef()
   const containerRef = useRef()
 
+  const onHover = () => {
+    console.log('onEnter', timer)
+    setHover(true)
+    setAnimated(true)
+    if (timer) {
+      console.log('onEnter clearTimeout')
+      clearTimeout(timer)
+    }
+  }
+
+  const onLeave = () => {
+    console.log('onLeave')
+    setHover(false)
+    if (timer) {
+      clearTimeout(timer)
+    }
+
+    timer = setTimeout(() => {
+      setAnimated(false)
+    }, delay)
+  }
+
   const getStyle = () => {
     const defaultStyle = {
-      transition: 'all .3s',
+      transition: `all ${delay / 1000}s`,
       maxWidth: '100%',
       maxHeight: '100%',
       cursor: 'pointer',
@@ -16,7 +47,6 @@ export const ImgHoverZoom = ({ ratio, src, width, height, debug }) => {
     }
 
     if (hover) {
-      console.log(ref.current)
       return {
         ...defaultStyle,
         // width: `${ratio * 100}%`
@@ -37,7 +67,8 @@ export const ImgHoverZoom = ({ ratio, src, width, height, debug }) => {
     const defaultStyle = {
       width,
       height,
-      position: 'absolute',
+      position: animated ? 'fixed' : 'absolute',
+      zIndex: animated ? 9999 : 'unset',
       display: 'flex',
       aliginItems: 'center',
       justifyContent: 'center'
@@ -46,10 +77,8 @@ export const ImgHoverZoom = ({ ratio, src, width, height, debug }) => {
     if (hover) {
       return {
         ...defaultStyle,
-        position: 'fixed',
         left: containerRef.current.getBoundingClientRect().x,
-        top: containerRef.current.getBoundingClientRect().y,
-        zIndex: 9999
+        top: containerRef.current.getBoundingClientRect().y
       }
     }
     return defaultStyle
@@ -70,10 +99,19 @@ export const ImgHoverZoom = ({ ratio, src, width, height, debug }) => {
           ref={ref}
           src={src}
           style={getStyle()}
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
+          onMouseEnter={onHover}
+          onMouseLeave={onLeave}
         />
       </div>
+
+      {debug && (
+        <div style={{ display: 'flex', position: 'absolute', zIndex: 9999 }}>
+          <div style={{ marginRight: '1em' }}>
+            {animated ? 'true' : 'false'}
+          </div>
+          <div>{hover ? 'true' : 'false'}</div>
+        </div>
+      )}
     </div>
   )
 }
