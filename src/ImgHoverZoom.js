@@ -10,7 +10,7 @@ export const ImgHoverZoom = ({
   delay = 500
 }) => {
   const [hover, setHover] = useState(false)
-  const [animated, setAnimated] = useState(false)
+  const [animated, setAnimated] = useState('idle')
   const [timer, setTimer] = useState(null)
   const ref = useRef()
   const containerRef = useRef()
@@ -18,7 +18,7 @@ export const ImgHoverZoom = ({
   const onHover = () => {
     console.log('onEnter', timer)
     setHover(true)
-    setAnimated(true)
+    setAnimated('enter')
     if (timer) {
       console.log('onEnter clearTimeout')
       clearTimeout(timer)
@@ -28,6 +28,7 @@ export const ImgHoverZoom = ({
 
   const onLeave = () => {
     console.log('onLeave')
+    setAnimated('leave')
     setHover(false)
     if (timer) {
       clearTimeout(timer)
@@ -35,7 +36,7 @@ export const ImgHoverZoom = ({
     }
 
     const t = setTimeout(() => {
-      setAnimated(false)
+      setAnimated('idle')
     }, delay)
     setTimer(t)
   }
@@ -68,11 +69,17 @@ export const ImgHoverZoom = ({
   }
 
   const getContainerStyle = () => {
+    const ZINDEX = {
+      idle: 'unset',
+      enter: 9999,
+      leave: 9998
+    }
+
     const defaultStyle = {
       width,
       height,
-      position: animated ? 'fixed' : 'absolute',
-      zIndex: animated ? 9999 : 'unset',
+      position: animated !== 'idle' ? 'fixed' : 'absolute',
+      zIndex: ZINDEX[animated],
       display: 'flex',
       aliginItems: 'center',
       justifyContent: 'center'
