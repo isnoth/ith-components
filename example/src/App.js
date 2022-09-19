@@ -109,6 +109,7 @@ const App = () => {
                     width={'120px'}
                     debug={true}
                     ratio={1.8} 
+                    delay={1000}
                     src={'https://thumbnail10.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/355306515057791-69466558-beb0-45ad-a7a0-fd9db43bdc90.jpg'}
                     />
                 </div>

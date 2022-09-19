@@ -78,16 +78,19 @@ export const ImgHoverZoom = ({
     const defaultStyle = {
       width,
       height,
-      position: animated !== 'idle' ? 'fixed' : 'absolute',
+      position: 'absolute',
+      left: 'unset',
+      top: 'unset',
       zIndex: ZINDEX[animated],
       display: 'flex',
       aliginItems: 'center',
       justifyContent: 'center'
     }
 
-    if (hover) {
+    if (animated !== 'idle') {
       return {
         ...defaultStyle,
+        position: 'fixed',
         left: containerRef.current.getBoundingClientRect().x,
         top: containerRef.current.getBoundingClientRect().y
       }
