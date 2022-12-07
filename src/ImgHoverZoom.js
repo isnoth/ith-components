@@ -4,6 +4,7 @@ import React, { useState, useRef } from 'react'
 export const ImgHoverZoom = ({
   ratio,
   src,
+  fallbackSrc,
   width,
   height,
   debug,
@@ -112,6 +113,10 @@ export const ImgHoverZoom = ({
         <img
           ref={ref}
           src={src}
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null // prevents looping
+            currentTarget.src = fallbackSrc
+          }}
           style={getStyle()}
           onMouseEnter={onHover}
           onMouseLeave={onLeave}
